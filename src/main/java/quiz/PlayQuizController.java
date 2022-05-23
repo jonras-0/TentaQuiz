@@ -48,7 +48,7 @@ public class PlayQuizController {
             }
             String gradedQuestion;
             if (QuizLogic.getQuizLogic().isQuestionCorrect(currentQuestion, chosenAlternatives.toArray(new Alternative[0]))) {
-                gradedQuestion = "Du svarade rätt!";
+                gradedQuestion = "Du svarade rätt" + (showCorrectAlternativesCheatCheckMenuItem.isSelected() ? " med hjälp av fusk. Bra jobbat!" : "!");
             } else {
                 gradedQuestion = "Du svarade fel! " + (currentQuestion.getCorrectAlternatives(true).length > 1 ? "De rätta svaren är:" : "Det rätta svaret är:");
                 for (Alternative a : currentAlternatives) {
@@ -120,12 +120,14 @@ public class PlayQuizController {
         for (Alternative a : currentAlternatives) {
             if (currentQuestion instanceof SingleChoiceQuestion) {
                 RadioButton rB = new RadioButton(a.getAlternativeText());
+                rB.setWrapText(true);
                 rB.setToggleGroup(toggleGroup);
                 alternativeBtnList.add(rB);
                 alternativesVBox.getChildren().add(rB);
             } else {
                 CheckBox cB = new CheckBox(a.getAlternativeText());
                 alternativeBtnList.add(cB);
+                cB.setWrapText(true);
                 alternativesVBox.getChildren().add(cB);
             }
         }

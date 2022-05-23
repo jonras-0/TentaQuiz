@@ -59,9 +59,11 @@ public class QuizLogic {
             String questionText = null;
             ArrayList<Alternative> questionAlternatives = new ArrayList<>();
             boolean isSingleChoiceQuestion = false;
+            int currentRow = 0;
 
             while (scanner.hasNextLine()) {
                 String readText = scanner.nextLine();
+                currentRow++;
                 if (readText.isEmpty()) {
                     if (questionText != null && !questionText.isEmpty()) {
                         createQuestionAndAddToList(questionSubject, questionText, questionAlternatives.toArray(new Alternative[0]), isSingleChoiceQuestion);
@@ -71,16 +73,17 @@ public class QuizLogic {
                         isSingleChoiceQuestion = false;
                     }
                 } else {
-                    String[] readTextSplit = readText.split(" ", 2);
-                    if (!readTextSplit[0].equals("//")) {
-                        switch (readTextSplit[0]) {
-                            case "singleChoiceQuestion", "sq" -> isSingleChoiceQuestion = true;
-                            case "multipleChoiceQuestion", "mq" -> isSingleChoiceQuestion = false;
+                    if (!readText.startsWith("//")) {
+                        String[] readTextSplit = readText.split(" ", 2);
+                        switch (readTextSplit[0].toLowerCase()) {
+                            case "singlechoicequestion", "sq" -> isSingleChoiceQuestion = true;
+                            case "multiplechoicequestion", "mq" -> isSingleChoiceQuestion = false;
                             case "subject:", "s" -> questionSubject = readTextSplit[1];
                             case "question:", "q" -> questionText = readTextSplit[1];
                             case "true:", "t" -> questionAlternatives.add(new Alternative(readTextSplit[1], true));
                             case "false:", "f" -> questionAlternatives.add(new Alternative(readTextSplit[1], false));
-                            default -> throw new IllegalArgumentException("Filen följer inte förväntat format!");
+                            default -> throw new IllegalArgumentException(getDetailsFromQuestionCreationError(questionSubject,
+                            questionText, questionAlternatives.toArray(new Alternative[0]), isSingleChoiceQuestion, currentRow));
                         }
                     }
                 }
@@ -89,6 +92,19 @@ public class QuizLogic {
         } catch (Exception e) {
             ShowAlert.showErrorAlert(e);
         }
+    }
+
+    private String getDetailsFromQuestionCreationError(String questionSubject,String questionText,
+                   Alternative[] questionAlternatives, boolean isSingleChoiceQuestion, int row) {
+        String errorMessage = "Tilldelningar vid krasch(rad" + row + "):"
+                + "\nFrågetypen är " + (isSingleChoiceQuestion ? "Envalsfråga" : "Flervalsfråga")
+                + "\nFrågans ämne är: " + questionSubject
+                + "\nFrågan är :" + questionText
+                + "\nAlternativen är:";
+        for (Alternative a : questionAlternatives) {
+            errorMessage += "\n" + a.getAlternativeText();
+        }
+        return errorMessage;
     }
 
     private void createQuestionAndAddToList(String questionSubject, String questionText, Alternative[] questionAlternatives, boolean isSingleChoiceQuestion) {
