@@ -1,0 +1,20 @@
+// Biologifrågor
+sq
+s Biologi
+q Vilken av följande beskrivningar passar bäst in på en get?
+t Geten är ett däggdjur
+f Geten är en fisk
+f Geten är en svamp
+f Geten är inte en get
+f Bättre tio getter i skogen än en på gården
+
+// Matematikfrågor
+
+s Matematik
+q Vilket tal är mindre än 2?
+t 0
+// TESTSGDFHFGH
+f 7
+f 15
+t -5
+f 567894
