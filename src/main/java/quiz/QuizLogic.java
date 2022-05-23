@@ -54,9 +54,7 @@ public class QuizLogic {
     public void getQuestionsFromFile(File file) {
         try {
             questionList = new ArrayList<>();
-
             Scanner scanner = new Scanner(file);
-//            scanner.useDelimiter(System.lineSeparator());
             String questionSubject = "";
             String questionText = null;
             ArrayList<Alternative> questionAlternatives = new ArrayList<>();

@@ -82,9 +82,13 @@ public class PlayQuizController {
                 ShowAlert.showErrorAlert(new Exception("Alternativlistan är null eller saknar innehåll!"));
             }
         } else {
-            for (ButtonBase bB : alternativeBtnList) {
-                bB.setBackground(Background.EMPTY);
-                wasCheatEnabled = false;
+            if (alternativeBtnList != null) {
+                for (ButtonBase bB : alternativeBtnList) {
+                    bB.setBackground(Background.EMPTY);
+                    wasCheatEnabled = false;
+                }
+            } else {
+                ShowAlert.showErrorAlert(new Exception("Alternativlistan är null eller saknar innehåll!"));
             }
         }
     }
