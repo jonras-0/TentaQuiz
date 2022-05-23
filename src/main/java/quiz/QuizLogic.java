@@ -96,7 +96,7 @@ public class QuizLogic {
 
     private String getDetailsFromQuestionCreationError(String questionSubject,String questionText,
                    Alternative[] questionAlternatives, boolean isSingleChoiceQuestion, int row) {
-        String errorMessage = "Tilldelningar vid krasch(rad" + row + "):"
+        String errorMessage = "Tilldelade frågevariabler vid krasch på rad" + row + ":"
                 + "\nFrågetypen är " + (isSingleChoiceQuestion ? "Envalsfråga" : "Flervalsfråga")
                 + "\nFrågans ämne är: " + questionSubject
                 + "\nFrågan är :" + questionText
