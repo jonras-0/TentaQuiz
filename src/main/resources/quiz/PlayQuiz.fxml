@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane minHeight="-Infinity" minWidth="-Infinity" prefWidth="400.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="quiz.PlayQuizController">
+<BorderPane maxWidth="600.0" minHeight="350.0" minWidth="400.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="quiz.PlayQuizController">
    <top>
       <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <top>
@@ -46,7 +46,7 @@
                   </Label>
                </top>
                <center>
-                  <TextArea fx:id="questionTextArea" editable="false" focusTraversable="false" pickOnBounds="false" prefHeight="200.0" prefWidth="200.0" wrapText="true" BorderPane.alignment="CENTER">
+                  <TextArea fx:id="questionTextArea" editable="false" focusTraversable="false" pickOnBounds="false" wrapText="true" BorderPane.alignment="CENTER">
                      <BorderPane.margin>
                         <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
                      </BorderPane.margin></TextArea>
@@ -59,9 +59,9 @@
       </BorderPane>
    </top>
    <center>
-      <BorderPane fx:id="alternativesBorderPane" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+      <BorderPane fx:id="alternativesBorderPane" BorderPane.alignment="CENTER">
          <bottom>
-            <Button defaultButton="true" mnemonicParsing="false" onAction="#answerQuestion" prefWidth="100.0" text="OK" BorderPane.alignment="CENTER">
+            <Button defaultButton="true" mnemonicParsing="false" onAction="#answerQuestion" text="OK" BorderPane.alignment="CENTER">
                <font>
                   <Font name="Times New Roman" size="18.0" />
                </font>
