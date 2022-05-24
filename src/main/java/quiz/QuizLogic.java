@@ -13,7 +13,11 @@ import java.util.Scanner;
 public class QuizLogic {
     private static QuizLogic quizLogic = new QuizLogic();
     private ArrayList<Question> questionList;
+    private int rightAnswerCounter = 0;
+    private int wrongAnswerCounter = 0;
 
+    public int getRightAnswerCounter() {return rightAnswerCounter;}
+    public int getWrongAnswerCounter() {return wrongAnswerCounter;}
     public static QuizLogic getQuizLogic() {return quizLogic;}
 
     public boolean isGameReady() {
@@ -38,13 +42,16 @@ public class QuizLogic {
             if (a.getIsCorrect()) {
                 trueAnswers.remove(a);
             } else {
+                wrongAnswerCounter++;
                 return false;
             }
         }
         if (trueAnswers.isEmpty()) {
             removeCorrectlyAnsweredQuestion(question);
+            rightAnswerCounter++;
             return true;
         }
+        wrongAnswerCounter++;
         return false;
     }
 

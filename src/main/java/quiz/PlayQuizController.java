@@ -2,7 +2,6 @@ package quiz;
 
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
-import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
@@ -55,7 +54,12 @@ public class PlayQuizController {
                 }
             }
             ShowAlert.showAlert(gradedQuestion);
-            ViewController.showView(View.PLAY_QUIZ);
+            if (QuizLogic.getQuizLogic().isGameReady()) {
+                ViewController.showView(View.PLAY_QUIZ_VIEW);
+            } else {
+                ViewController.showView(View.RESULT_VIEW);
+            }
+
         } else {
             ShowAlert.showErrorAlert(new Exception("Alternativlistan är null eller saknar innehåll!"));
         }
@@ -96,10 +100,7 @@ public class PlayQuizController {
 
     public void initialize() {
         currentQuestion = QuizLogic.getQuizLogic().getAQuestion();
-        if (currentQuestion == null) {
-            ShowAlert.showAlert("Grattis, du har klarat alla frågor!");
-            resetQuiz();
-        } else {
+        if (currentQuestion != null) {
             titleLabel.setText(currentQuestion.getQuestionSubject());
             questionTextArea.setText(currentQuestion.getQuestionText());
             currentAlternatives = currentQuestion.getShuffledAlternatives();

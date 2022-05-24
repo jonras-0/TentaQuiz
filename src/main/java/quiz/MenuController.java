@@ -1,11 +1,9 @@
 package quiz;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.FileChooser;
 import java.io.File;
-import java.io.IOException;
 import java.nio.file.Paths;
 
 public class MenuController {
@@ -28,7 +26,7 @@ public class MenuController {
     @FXML
     void startQuiz() {
         if (QuizLogic.getQuizLogic().isGameReady()) {
-            ViewController.showView(View.PLAY_QUIZ);
+            ViewController.showView(View.PLAY_QUIZ_VIEW);
         }
         else {
             ShowAlert.showInformationAlert("En fil behöver läsas in innan du kan starta quizen!");
