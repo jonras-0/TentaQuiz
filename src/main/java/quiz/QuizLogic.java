@@ -64,7 +64,7 @@ public class QuizLogic {
             while (scanner.hasNextLine()) {
                 String readText = scanner.nextLine();
                 currentRow++;
-                if (readText.isEmpty()) {
+                if (readText.isEmpty() || readText.startsWith(" ")) {
                     if (questionText != null && !questionText.isEmpty()) {
                         createQuestionAndAddToList(questionSubject, questionText, questionAlternatives.toArray(new Alternative[0]), isSingleChoiceQuestion);
                         questionSubject = "";
@@ -96,10 +96,10 @@ public class QuizLogic {
 
     private String getDetailsFromQuestionCreationError(String questionSubject,String questionText,
                    Alternative[] questionAlternatives, boolean isSingleChoiceQuestion, int row) {
-        String errorMessage = "Tilldelade frågevariabler vid krasch på rad" + row + ":"
+        String errorMessage = "Tilldelade frågevariabler vid krasch på rad " + row + ":"
                 + "\nFrågetypen är " + (isSingleChoiceQuestion ? "Envalsfråga" : "Flervalsfråga")
                 + "\nFrågans ämne är: " + questionSubject
-                + "\nFrågan är :" + questionText
+                + "\nFrågan är: " + questionText
                 + "\nAlternativen är:";
         for (Alternative a : questionAlternatives) {
             errorMessage += "\n" + a.getAlternativeText();
