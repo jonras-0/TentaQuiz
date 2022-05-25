@@ -25,7 +25,7 @@ public abstract class Question {
             this.questionText = questionText;
             this.alternatives = alternatives;
         } else {
-            throw new IllegalArgumentException("En fråga måste ha något korrekt svarsalternativ.");
+            throw new IllegalArgumentException("En fråga måste ha minst ett korrekt svarsalternativ.");
         }
     }
 
