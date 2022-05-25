@@ -9,33 +9,12 @@
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
 <BorderPane maxWidth="600.0" minHeight="350.0" minWidth="400.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="quiz.PlayQuizController">
    <top>
       <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-         <top>
-            <MenuBar BorderPane.alignment="CENTER">
-              <menus>
-                <Menu mnemonicParsing="false" text="Meny">
-                  <items>
-                        <MenuItem mnemonicParsing="false" onAction="#resetQuiz" text="Starta om quiz" />
-                    <MenuItem mnemonicParsing="false" onAction="#exitQuiz" text="Avsluta" />
-                  </items>
-                </Menu>
-                <Menu mnemonicParsing="false" text="Hjälp">
-                  <items>
-                      <Menu mnemonicParsing="false" text="Fuska">
-                           <items>
-                              <CheckMenuItem fx:id="showCorrectAlternativesCheatCheckMenuItem" mnemonicParsing="false" onAction="#enableOrDisableAlternativesCheat" text="Visa korrekta svar" />
-                           </items>
-                      </Menu>
-                    <MenuItem mnemonicParsing="false" onAction="#showInfoAbout" text="Om" />
-                  </items>
-                </Menu>
-              </menus>
-            </MenuBar>
-         </top>
          <center>
             <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                <top>
@@ -56,6 +35,37 @@
                </BorderPane.margin>
             </BorderPane>
          </center>
+         <top>
+            <StackPane alignment="TOP_CENTER" BorderPane.alignment="CENTER">
+               <children>
+                  <MenuBar>
+                    <menus>
+                      <Menu mnemonicParsing="false" text="Meny">
+                        <items>
+                              <MenuItem mnemonicParsing="false" onAction="#resetQuiz" text="Starta om quiz" />
+                          <MenuItem mnemonicParsing="false" onAction="#exitQuiz" text="Avsluta" />
+                        </items>
+                      </Menu>
+                      <Menu mnemonicParsing="false" text="Hjälp">
+                        <items>
+                            <Menu mnemonicParsing="false" text="Fuska">
+                                 <items>
+                                    <CheckMenuItem fx:id="showCorrectAlternativesCheatCheckMenuItem" mnemonicParsing="false" onAction="#enableOrDisableAlternativesCheat" text="Visa korrekta svar" />
+                                 </items>
+                            </Menu>
+                          <MenuItem mnemonicParsing="false" onAction="#showInfoAbout" text="Om" />
+                        </items>
+                      </Menu>
+                    </menus>
+                  </MenuBar>
+                  <Label fx:id="remainingQuestionsLabel" text="x frågor kvar" StackPane.alignment="CENTER_RIGHT">
+                     <StackPane.margin>
+                        <Insets right="15.0" />
+                     </StackPane.margin>
+                  </Label>
+               </children>
+            </StackPane>
+         </top>
       </BorderPane>
    </top>
    <center>

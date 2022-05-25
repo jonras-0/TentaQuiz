@@ -13,12 +13,18 @@ import java.util.Scanner;
 public class QuizLogic {
     private static QuizLogic quizLogic = new QuizLogic();
     private ArrayList<Question> questionList;
-    private int rightAnswerCounter = 0;
-    private int wrongAnswerCounter = 0;
+    private int rightAnswerCounter;
+    private int wrongAnswerCounter;
+
+    private QuizLogic() {
+        rightAnswerCounter = 0;
+        wrongAnswerCounter = 0;
+    }
 
     public int getRightAnswerCounter() {return rightAnswerCounter;}
     public int getWrongAnswerCounter() {return wrongAnswerCounter;}
     public static QuizLogic getQuizLogic() {return quizLogic;}
+
 
     public boolean isGameReady() {
         if (questionList != null && !questionList.isEmpty()) {
@@ -98,6 +104,15 @@ public class QuizLogic {
             createQuestionAndAddToList(questionSubject, questionText, questionAlternatives.toArray(new Alternative[0]), isSingleChoiceQuestion);
         } catch (Exception e) {
             ShowAlert.showErrorAlert(e);
+        }
+    }
+
+    public int getNoOfRemainingQuestions() {
+        if (questionList != null) {
+            return questionList.size();
+        }
+        else {
+            return 0;
         }
     }
 

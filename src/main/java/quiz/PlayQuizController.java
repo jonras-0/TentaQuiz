@@ -15,6 +15,7 @@ public class PlayQuizController {
     @FXML private TextArea questionTextArea;
     @FXML private Label titleLabel;
     @FXML private BorderPane alternativesBorderPane;
+    @FXML private Label remainingQuestionsLabel;
     @FXML private CheckMenuItem showCorrectAlternativesCheatCheckMenuItem;
 
     private Alternative[] currentAlternatives;
@@ -106,6 +107,9 @@ public class PlayQuizController {
             currentAlternatives = currentQuestion.getShuffledAlternatives();
             alternativesGridPaneSetup();
             setupCheatSettings();
+            int remainingQestions = QuizLogic.getQuizLogic().getNoOfRemainingQuestions();
+            remainingQuestionsLabel.setText(remainingQestions + " " + (remainingQestions == 1 ? "fråga" : "frågor")
+            + " kvar");
         }
     }
 

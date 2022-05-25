@@ -6,7 +6,7 @@ import java.util.Collections;
 
 public abstract class Question {
 
-    String questionSubject;
+    private String questionSubject;
     private String questionText;
     private Alternative[] alternatives;
 
@@ -32,7 +32,6 @@ public abstract class Question {
     public String getQuestionSubject() {
         return questionSubject;
     }
-
     public String getQuestionText() {
         return questionText;
     }
