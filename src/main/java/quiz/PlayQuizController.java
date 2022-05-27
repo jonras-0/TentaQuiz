@@ -41,7 +41,9 @@ public class PlayQuizController {
                             isAlternativeSelected = true;
                         }
                     }
-                    if (isAlternativeSelected && bB.getText().endsWith(a.getAlternativeText())) {
+                    String[] btnTextWithNr = bB.getText().split(". ", 2);
+                    String btnText = btnTextWithNr[1];
+                    if (isAlternativeSelected && btnText.equals(a.getAlternativeText())) {
                         chosenAlternatives.add(a);
                     }
                 }
@@ -77,7 +79,9 @@ public class PlayQuizController {
             if (alternativeBtnList != null && !alternativeBtnList.isEmpty()) {
                 for (ButtonBase bB : alternativeBtnList) {
                     for (Alternative a : currentAlternatives) {
-                        if (a.getIsCorrect() && bB.getText().endsWith(a.getAlternativeText())) {
+                        String[] btnTextWithNr = bB.getText().split(". ", 2);
+                        String btnText = btnTextWithNr[1];
+                        if (a.getIsCorrect() && btnText.equals(a.getAlternativeText())) {
                             bB.setBackground(new Background(new BackgroundFill(Color.LIGHTGREEN, null, null)));
                             wasCheatEnabled = true;
                         }
