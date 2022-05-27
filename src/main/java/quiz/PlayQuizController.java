@@ -10,8 +10,6 @@ import javafx.scene.paint.Color;
 import model.Alternative;
 import model.SingleChoiceQuestion;
 import model.Question;
-
-import java.io.IOException;
 import java.util.ArrayList;
 
 public class PlayQuizController {
@@ -43,7 +41,7 @@ public class PlayQuizController {
                             isAlternativeSelected = true;
                         }
                     }
-                    if (isAlternativeSelected && bB.getText().equals(a.getAlternativeText())) {
+                    if (isAlternativeSelected && bB.getText().endsWith(a.getAlternativeText())) {
                         chosenAlternatives.add(a);
                     }
                 }
@@ -79,7 +77,7 @@ public class PlayQuizController {
             if (alternativeBtnList != null && !alternativeBtnList.isEmpty()) {
                 for (ButtonBase bB : alternativeBtnList) {
                     for (Alternative a : currentAlternatives) {
-                        if (a.getIsCorrect() && a.getAlternativeText().equals(bB.getText())) {
+                        if (a.getIsCorrect() && bB.getText().endsWith(a.getAlternativeText())) {
                             bB.setBackground(new Background(new BackgroundFill(Color.LIGHTGREEN, null, null)));
                             wasCheatEnabled = true;
                         }
@@ -109,6 +107,15 @@ public class PlayQuizController {
             titleLabel.setText(currentQuestion.getQuestionSubject());
             questionTextArea.setText(currentQuestion.getQuestionText());
             currentAlternatives = currentQuestion.getShuffledAlternatives();
+
+            //##########################################################################################################
+            for (Alternative a : currentAlternatives) {
+                if (a.getIsCorrect()) {
+
+                    System.out.println(a.getAlternativeText());
+                }
+            }
+
             alternativesGridPaneSetup();
             setupCheatSettings();
             int remainingQestions = QuizLogic.getQuizLogic().getNoOfRemainingQuestions();
@@ -181,6 +188,7 @@ public class PlayQuizController {
             }
         }
     }
+
     private void checkOrUncheckAlternative(int btnIndex) {
         if (alternativeBtnList.size() > btnIndex) {
             ButtonBase button = alternativeBtnList.get(btnIndex);
@@ -196,6 +204,5 @@ public class PlayQuizController {
                     checkBox.setSelected(true);
             }
         }
-
     }
 }
