@@ -107,15 +107,6 @@ public class PlayQuizController {
             titleLabel.setText(currentQuestion.getQuestionSubject());
             questionTextArea.setText(currentQuestion.getQuestionText());
             currentAlternatives = currentQuestion.getShuffledAlternatives();
-
-            //##########################################################################################################
-            for (Alternative a : currentAlternatives) {
-                if (a.getIsCorrect()) {
-
-                    System.out.println(a.getAlternativeText());
-                }
-            }
-
             alternativesGridPaneSetup();
             setupCheatSettings();
             int remainingQestions = QuizLogic.getQuizLogic().getNoOfRemainingQuestions();
@@ -130,21 +121,6 @@ public class PlayQuizController {
         alternativesVBox.setSpacing(10);
         alternativeBtnList = new ArrayList<>();
         ToggleGroup toggleGroup = new ToggleGroup();
-
-//        for (int i = 1 ; i <= currentAlternatives.length; i++) {
-//            if (currentQuestion instanceof SingleChoiceQuestion) {
-//                RadioButton rB = new RadioButton(i + ". " + currentAlternatives[i].getAlternativeText());
-//                rB.setWrapText(true);
-//                rB.setToggleGroup(toggleGroup);
-//                alternativeBtnList.add(rB);
-//                alternativesVBox.getChildren().add(rB);
-//            } else {
-//                CheckBox cB = new CheckBox(i + ". " + currentAlternatives[i].getAlternativeText());
-//                alternativeBtnList.add(cB);
-//                cB.setWrapText(true);
-//                alternativesVBox.getChildren().add(cB);
-//            }
-//        }
         int counter = 1;
         for (Alternative a : currentAlternatives) {
             if (currentQuestion instanceof SingleChoiceQuestion) {
